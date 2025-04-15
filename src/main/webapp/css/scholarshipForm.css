@@ -1,0 +1,92 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url('../photo/form.jpg') no-repeat center center/cover;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #374151; /* Gray color */
+    margin: 0;
+    padding: 0;
+}
+
+/* Main container */
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 4rem 1rem;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(8px);
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Title */
+.title {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+       color: black;
+    margin-bottom: 3rem;
+}
+
+/* Form */
+form {
+    padding: 2rem;
+}
+
+/* Label and Input styles */
+label {
+    display: block;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    outline: none;
+    font-size: 1rem;
+}
+
+/* Focus states */
+input:focus,
+textarea:focus {
+    border-color: #3b82f6; /* Blue color */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* Row layout for Gender and Age */
+.row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.row > div {
+    flex: 1;
+}
+
+/* Submit Button */
+button {
+    background-color: #2563eb; /* Blue color */
+    color: white;
+    border: none;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1d4ed8; /* Darker blue on hover */
+}
