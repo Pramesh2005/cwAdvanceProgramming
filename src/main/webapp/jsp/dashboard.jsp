@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-  <title>Admin Dashboard</title>
+  <title> Admin Dashboard</title>
   <style>
     * {
       margin: 0;
@@ -81,7 +81,7 @@
 
   <div class="sidebar">
     <h2>Admin Panel</h2>
-    <a href="scholarship_list.jsp">🎓 Manage Scholarships</a>
+    <a href="scholarship_list.jsp">🎓 Manage A Scholarships</a>
     <a href="${pageContext.request.contextPath}/scholarship">📄 View Applications</a>
     <a href="contact">📨 Contact Messages</a>
     <a href="${pageContext.request.contextPath}/logout">🚪 Logout</a>
@@ -92,7 +92,7 @@
 
     <div class="card">
       <h3>Dashboard Overview</h3>
-      <p>This is your control center. From here, you can manage scholarships, view student applications, respond to messages, and monitor activity.</p>
+      <p>This is your control center. From here, you can manage/access scholarships, view student applications, respond to messages, and monitor activity.</p>
     </div>
 
     <div class="card">
