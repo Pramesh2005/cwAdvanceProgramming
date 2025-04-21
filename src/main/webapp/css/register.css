@@ -9,19 +9,19 @@ body {
   overflow: hidden;
 }
 
-/* ❌ Remove body::before (we don’t want blur outside container) */
+
 
 .register-container {
-  background: rgba(255, 255, 255, 0.2); /* More transparent with soft white */
+  background: rgba(255, 255, 255, 0.2); 
   padding: 30px 40px;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 450px;
   position: relative;
-  backdrop-filter: blur(10px); /* ✅ Blur only inside container */
-  -webkit-backdrop-filter: blur(10px); /* Safari support */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Optional: light border */
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); 
+  border: 1px solid rgba(255, 255, 255, 0.3);
   z-index: 1;
 }
 
