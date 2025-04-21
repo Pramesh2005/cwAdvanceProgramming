@@ -12,7 +12,7 @@
         <img src="/ScholarshipManagementMVC/photo/Scholarship3.jpg" alt="Scholarship" class="hero-image">
         <div class="hero-content">
             <h1>Your Future Begins with a Scholarship</h1>
-            <p>"Empowering Students to Achieve Their Dreams."</p>
+            <p>"Empowering Student's to Achieve Their Dream's."</p>
         </div>
     </section>
 
