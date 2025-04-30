@@ -15,5 +15,5 @@
   </tr>
 </c:forEach>
 </table>
-<p><a href="${pageContext.request.contextPath}/jsp/home.jsp">Back</a></p>
+<p><a href="${pageContext.request.contextPath}/jsp/dashboard.jsp">Back</a></p>
 </body></html>

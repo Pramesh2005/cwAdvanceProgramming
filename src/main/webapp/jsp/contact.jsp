@@ -102,7 +102,7 @@
       <c:if test="${not empty success}">
         <p class="success-message">${success}</p>
       </c:if>
-      <form method="post" action="contact">
+      <form method="post" action="${pageContext.request.contextPath}/contact">
         <input type="text" name="name" placeholder="Your Name" required />
         <input type="email" name="email" placeholder="Your Email" required />
         <input type="text" name="subject" placeholder="Subject" required />

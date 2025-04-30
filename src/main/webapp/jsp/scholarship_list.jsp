@@ -1,13 +1,164 @@
-<!-- scholarship_list.jsp (admin) -->
-<%@ page contentType="text/html" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<c:forEach var="s" items="${list}">
-  <div>
-    <b>${s.title}</b>
-    [<a href="scholarship?action=edit&id=${s.scholarshipId}">Edit</a>]
-    [<a href="scholarship?action=delete&id=${s.scholarshipId}">Delete</a>]
+<html>
+<head>
+  <title>Manage Scholarships</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f8;
+      padding: 40px;
+      min-height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 32px;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+    .scholarship-item {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid #ddd;
+      transition: background 0.2s;
+    }
+    .scholarship-item:last-child {
+      border-bottom: none;
+    }
+    .scholarship-item:hover {
+      background: #f5f5f5;
+    }
+    .scholarship-title {
+      flex: 1;
+      font-weight: bold;
+      color: #2c3e50;
+      font-size: 16px;
+    }
+    .scholarship-actions a {
+      margin-left: 15px;
+      text-decoration: none;
+      color: #34495e;
+      font-weight: 500;
+      padding: 5px 10px;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .scholarship-actions a.edit {
+      background: #e8f0fe;
+      color: #1a73e8;
+    }
+    .scholarship-actions a.edit:hover {
+      background: #1a73e8;
+      color: white;
+    }
+    .scholarship-actions a.delete {
+      background: #ffebee;
+      color: #d32f2f;
+    }
+    .scholarship-actions a.delete:hover {
+      background: #d32f2f;
+      color: white;
+    }
+    .action-links {
+      margin-top: 20px;
+      display: flex;
+      gap: 15px;
+    }
+    .action-links a {
+      text-decoration: none;
+      color: #2c3e50;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .action-links a.create {
+      background: #e8f0fe;
+      color: #1a73e8;
+    }
+    .action-links a.create:hover {
+      background: #1a73e8;
+      color: white;
+    }
+    .action-links a.dashboard, .action-links a.logout {
+      background: #eceff1;
+      color: #2c3e50;
+    }
+    .action-links a.dashboard:hover, .action-links a.logout:hover {
+      background: #2c3e50;
+      color: white;
+    }
+    .no-scholarships {
+      color: #555;
+      font-style: italic;
+      margin-top: 20px;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+      .container {
+        padding: 15px;
+      }
+      h1 {
+        font-size: 24px;
+      }
+      .scholarship-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+      }
+      .scholarship-actions {
+        margin-top: 10px;
+      }
+      .scholarship-actions a {
+        margin-left: 0;
+        margin-right: 10px;
+      }
+      .action-links {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Manage Scholarships</h1>
+    <c:choose>
+      <c:when test="${empty list}">
+        <p class="no-scholarships">No scholarships found.</p>
+      </c:when>
+      <c:otherwise>
+        <c:forEach var="s" items="${list}">
+          <div class="scholarship-item">
+            <span class="scholarship-title">${s.title}</span>
+            <div class="scholarship-actions">
+              <a href="scholarship?action=edit&id=${s.scholarshipId}" class="edit">Edit</a>
+              <a href="scholarship?action=delete&id=${s.scholarshipId}" class="delete">Delete</a>
+            </div>
+          </div>
+        </c:forEach>
+      </c:otherwise>
+    </c:choose>
+    <div class="action-links">
+      <a href="${pageContext.request.contextPath}/jsp/scholarship_form.jsp?action=new" class="create">Create New</a>
+      <a href="${pageContext.request.contextPath}/jsp/dashboard.jsp" class="dashboard">Dashboard</a>
+      <a href="${pageContext.request.contextPath}/logout" class="logout">Logout</a>
+    </div>
   </div>
-</c:forEach>
-<p><a href="scholarship_form.jsp?action=new">Create New</a></p>
-<p><a href="dashboard.jsp">Dashboard</a> | <a href="${pageContext.request.contextPath}/logout">Logout</a></p>
+</body>
+</html>
