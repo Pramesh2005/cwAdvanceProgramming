@@ -1,24 +1,20 @@
 package servlet;
 
-
-import model.ContactMessage;
-import model.User;
-
-
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-
+import dao.ApplicationDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import dao.ContactDAO;
+import model.User;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
 @SuppressWarnings("serial")
-@WebServlet("/admin/contact_messages")
-public class ContactServlet<ContactDAO> extends HttpServlet {
-    private ContactDAO contactDAO = new ContactDAO();
+@WebServlet("/admin/dashboard")
+public class AdminDashboardServlet extends HttpServlet {
+    private ApplicationDAO applicationDAO = new ApplicationDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,12 +22,12 @@ public class ContactServlet<ContactDAO> extends HttpServlet {
         if (user == null || !"admin".equals(user.getRole())) {
             response.sendRedirect("/login.jsp");
             return;
-        }	
+        }
 
         try {
-            List<ContactMessage> messages = ((Object) contactDAO).getAllMessages();
-            request.setAttribute("messages", messages);
-            request.getRequestDispatcher("/admin/contact_messages.jsp").forward(request, response);
+            int totalApplications = applicationDAO.getTotalApplications();
+            request.setAttribute("totalApplications", totalApplications);
+            request.getRequestDispatcher("/admin/dashboard.jsp").forward(request, response);
         } catch (SQLException e) {
             throw new ServletException("Database error", e);
         }

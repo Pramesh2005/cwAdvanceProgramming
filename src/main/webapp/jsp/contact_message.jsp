@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scholarship Applications</title>
+    <title>Contact Messages</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -37,16 +37,6 @@
         table th {
             background-color: #f2f2f2;
         }
-        .actions a {
-            background-color: #00796b;
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 3px;
-            text-decoration: none;
-        }
-        .actions a:hover {
-            background-color: #004d40;
-        }
         .back-link {
             display: block;
             text-align: center;
@@ -56,31 +46,25 @@
 </head>
 <body>
     <div class="container">
-        <h1>Scholarship Applications</h1>
+        <h1>Contact Messages</h1>
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>User ID</th>
-                    <th>Scholarship ID</th>
-                    <th>Applied At</th>
-                    <th>Status</th>
-                    <th>Remarks</th>
-                    <th>Actions</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Message</th>
+                    <th>Submitted At</th>
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="a" items="${applications}">
+                <c:forEach var="m" items="${messages}">
                     <tr>
-                        <td>${a.applicationId}</td>
-                        <td>${a.userId}</td>
-                        <td>${a.scholarshipId}</td>
-                        <td>${a.appliedAt}</td>
-                        <td>${a.status}</td>
-                        <td>${a.remarks}</td>
-                        <td class="actions">
-                            <a href="/admin/applications?action=view&id=${a.applicationId}">View</a>
-                        </td>
+                        <td>${m.name}</td>
+                        <td>${m.email}</td>
+                        <td>${m.subject}</td>
+                        <td>${m.message}</td>
+                        <td>${m.submittedAt}</td>
                     </tr>
                 </c:forEach>
             </tbody>

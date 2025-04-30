@@ -1,43 +1,37 @@
-// src/servlet/ApplicationServlet.java
 package servlet;
-import dao.ApplicationDAO; 
-import model.Application; 
-import model.User;
+
+import dao.ApplicationDAO;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet; 
-import jakarta.servlet.http.*; 
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import model.Application;
+import model.User;
+
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
-@WebServlet("/application")
+
+@SuppressWarnings("serial")
+@WebServlet("/admin/applications")
 public class ApplicationServlet extends HttpServlet {
-  private static final long serialVersionUID = 1L;
-  @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-    HttpSession session = req.getSession(false);
-    User u = (session != null) ? (User)session.getAttribute("user") : null;
-    if (u == null) { res.sendRedirect(req.getContextPath() + "/login"); return; }
-    ApplicationDAO dao = new ApplicationDAO();
-    try {
-      if ("delete".equals(req.getParameter("action"))) {
-        dao.delete(Integer.parseInt(req.getParameter("id")));
-      }
-      List<Application> L = dao.listByUser(u.getUserId());
-      req.setAttribute("apps", L);
-      req.getRequestDispatcher("/jsp/application_list.jsp").forward(req, res);
-    } catch (Exception e) { throw new ServletException(e); }
-  }
-  @Override
-  protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-    HttpSession session = req.getSession(false);
-    User u = (session != null) ? (User)session.getAttribute("user") : null;
-    if (u == null) { res.sendRedirect(req.getContextPath() + "/login"); return; }
-    try {
-      Application a = new Application();
-      a.setUserId(u.getUserId());
-      a.setScholarshipId(Integer.parseInt(req.getParameter("scholarshipId")));
-      a.setRemarks(req.getParameter("remarks"));
-      new ApplicationDAO().apply(a);
-      res.sendRedirect(req.getContextPath() + "/application");
-    } catch (Exception e) { throw new ServletException(e); }
-  }
+    private ApplicationDAO applicationDAO = new ApplicationDAO();
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        User user = (User) request.getSession().getAttribute("user");
+        if (user == null || !"admin".equals(user.getRole())) {
+            response.sendRedirect("/login.jsp");
+            return;
+        }
+
+        try {
+            List<Application> applications = applicationDAO.listAllApplications();
+            request.setAttribute("applications", applications);
+            request.getRequestDispatcher("/admin/application_list.jsp").forward(request, response);
+        } catch (SQLException e) {
+            throw new ServletException("Database error", e);
+        }
+    }
 }

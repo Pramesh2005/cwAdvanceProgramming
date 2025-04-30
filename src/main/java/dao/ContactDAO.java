@@ -1,17 +1,27 @@
-// src/dao/ContactDAO.java
 package dao;
+
 import java.sql.*;
+import java.util.*;
 import model.ContactMessage;
+
 public class ContactDAO {
-  public void save(ContactMessage m) throws SQLException {
-    String sql="INSERT INTO contact_message(name,email,subject,message) VALUES(?,?,?,?)";
-    try(Connection c=DBUtil.getConnection();
-        PreparedStatement p=c.prepareStatement(sql)){
-      p.setString(1,m.getName());
-      p.setString(2,m.getEmail());
-      p.setString(3,m.getSubject());
-      p.setString(4,m.getMessage());
-      p.executeUpdate();
+    public List<ContactMessage> getAllMessages() throws SQLException {
+        String sql = "SELECT * FROM contact_message ORDER BY submitted_at DESC";
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            List<ContactMessage> messages = new ArrayList<>();
+            while (rs.next()) {
+                ContactMessage m = new ContactMessage();
+                m.setMessageId(rs.getInt("message_id"));
+                m.setName(rs.getString("name"));
+                m.setEmail(rs.getString("email"));
+                m.setSubject(rs.getString("subject"));
+                m.setMessage(rs.getString("message"));
+                m.setSubmittedAt(rs.getTimestamp("submitted_at"));
+                messages.add(m);
+            }
+            return messages;
+        }
     }
-  }
 }
