@@ -1,0 +1,139 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<head>
+    <title>Available Scholarships</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/home.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f6f8;
+            min-height: 100vh;
+        }
+        .main-content {
+            padding: 40px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h2.section-title {
+            font-size: 28px;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .scholarship-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            text-align: left;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h3 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .card p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .card a {
+            display: inline-block;
+            background: #1a73e8;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        .card a:hover {
+            background: #1557b0;
+        }
+        .no-scholarships {
+            text-align: center;
+            color: #555;
+            font-style: italic;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .action-links {
+            margin-top: 30px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .action-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 4px;
+            background: #eceff1;
+            transition: background 0.2s, color 0.2s;
+        }
+        .action-links a:hover {
+            background: #2c3e50;
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 20px;
+            }
+            .section-title {
+                font-size: 24px;
+            }
+            .scholarship-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <jsp:include page="/jsp/header.jsp" />
+    <div class="main-content">
+        <div class="container">
+            <h2 class="section-title">Available Scholarships</h2>
+            <c:choose>
+                <c:when test="${not empty list}">
+                    <div class="scholarship-cards">
+                        <c:forEach var="s" items="${list}">
+                            <div class="card">
+                                <h3>${s.title}</h3>
+                                <p>Deadline: ${s.applicationDeadline}</p>
+                                <a href="${pageContext.request.contextPath}/apply?scholarshipId=${s.scholarshipId}">Apply</a>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <p class="no-scholarships">No scholarships available</p>
+                </c:otherwise>
+            </c:choose>
+            <div class="action-links">
+                <a href="${pageContext.request.contextPath}/jsp/application_list.jsp">My Applications</a>
+                <a href="${pageContext.request.contextPath}/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+    <jsp:include page="/jsp/footer.jsp" />
+</body>
+</html>

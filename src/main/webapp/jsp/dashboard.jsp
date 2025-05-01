@@ -81,7 +81,7 @@
 
   <div class="sidebar">
     <h2>Admin Panel</h2>
-    <a href="${pageContext.request.contextPath}/scholarship">🎓 Manage A Scholarships</a>
+    <a href="${pageContext.request.contextPath}/jsp/scholarship">🎓 Manage A Scholarships</a>
     <a href="${pageContext.request.contextPath}/application">📄 View Applications</a>
     <a href="${pageContext.request.contextPath}/admin/contact-messages">📨 Contact Messages</a>
     <a href="${pageContext.request.contextPath}/logout">🚪 Logout</a>

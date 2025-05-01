@@ -79,4 +79,23 @@ public class ScholarshipDAO {
       p.executeUpdate();
     }
   }
+  public List<Scholarship> findAll() throws SQLException {
+      List<Scholarship> scholarships = new ArrayList<>();
+      String sql = "SELECT * FROM scholarships";
+      try (Connection conn = DBUtil.getConnection(); 
+           PreparedStatement stmt = conn.prepareStatement(sql); 
+           ResultSet rs = stmt.executeQuery()) {
+          while (rs.next()) {
+              Scholarship s = new Scholarship();
+              s.setScholarshipId(rs.getInt("id"));
+              s.setTitle(rs.getString("title"));
+              s.setDescription(rs.getString("description"));
+              s.setEligibilityCriteria(rs.getString("eligibility_criteria"));
+              s.setAmount(rs.getDouble("amount"));
+              s.setApplicationDeadline(rs.getString("application_deadline"));
+              scholarships.add(s);
+          }
+      }
+      return scholarships;
+  }
 }

@@ -41,8 +41,8 @@ public class Scholarship {
 	public Date getApplicationDeadline() {
 		return applicationDeadline;
 	}
-	public void setApplicationDeadline(Date applicationDeadline) {
-		this.applicationDeadline = applicationDeadline;
+	public void setApplicationDeadline(String string) {
+		this.applicationDeadline = string;
 	}
 	public int getCreatedBy() {
 		return createdBy;
