@@ -9,22 +9,39 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/available-scholarships")
 public class AvailableScholarshipServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private ScholarshipDAO scholarshipDAO = new ScholarshipDAO();
+    private ScholarshipDAO scholarshipDAO;
+
+    @Override
+    public void init() throws ServletException {
+        scholarshipDAO = new ScholarshipDAO();
+        System.out.println("AvailableScholarshipServlet initialized");
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
         try {
-            List<Scholarship> list = scholarshipDAO.findAll();
+            System.out.println("Fetching scholarships...");
+            List<Scholarship> list = scholarshipDAO.listAll();
+            System.out.println("Scholarships retrieved: " + list.size());
             req.setAttribute("list", list);
             req.getRequestDispatcher("/jsp/AvailableScholarship.jsp").forward(req, res);
+        } catch (SQLException e) {
+            System.err.println("Database error: " + e.getMessage());
+            e.printStackTrace();
+            req.setAttribute("error", "Database error: " + e.getMessage());
+            req.getRequestDispatcher("/jsp/AvailableScholarship.jsp").forward(req, res);
         } catch (Exception e) {
-            throw new ServletException("Error retrieving scholarships", e);
+            System.err.println("Unexpected error: " + e.getMessage());
+            e.printStackTrace();
+            req.setAttribute("error", "Unexpected error: " + e.getMessage());
+            req.getRequestDispatcher("/jsp/AvailableScholarship.jsp").forward(req, res);
         }
     }
 }

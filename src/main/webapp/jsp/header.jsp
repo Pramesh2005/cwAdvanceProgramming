@@ -9,7 +9,7 @@
         <nav>
             <ul class="nav-links">
                 <li><a href="${pageContext.request.contextPath}/jsp/home.jsp">Home</a></li>
-                <li><a href="${pageContext.request.contextPath}/jsp/AvailableScholarship.jsp">Available Scholarship</a></li>
+                <li><a href="${pageContext.request.contextPath}//available-scholarships">Available Scholarship</a></li>
                 <li><a href="${pageContext.request.contextPath}/jsp/applyScholarship.jsp">Apply Scholarship</a></li>
                 <li><a href="${pageContext.request.contextPath}/jsp/contact.jsp">Contact Us</a></li>
                 <li><a href="${pageContext.request.contextPath}/jsp/about.jsp">About Us</a></li>
