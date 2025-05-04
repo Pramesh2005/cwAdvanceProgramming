@@ -9,8 +9,8 @@
         <nav>
             <ul class="nav-links">
                 <li><a href="${pageContext.request.contextPath}/jsp/home.jsp">Home</a></li>
-                <li><a href="${pageContext.request.contextPath}/page/AvailableScholarship.jsp">Available Scholarship</a></li>
-                <li><a href="${pageContext.request.contextPath}/page/applyScholarship.jsp">Apply Scholarship</a></li>
+                <li><a href="${pageContext.request.contextPath}/jsp/AvailableScholarship.jsp">Available Scholarship</a></li>
+                <li><a href="${pageContext.request.contextPath}/jsp/scholarshipForm.jsp">Apply Scholarship</a></li>
                 <li><a href="${pageContext.request.contextPath}/jsp/contact.jsp">Contact Us</a></li>
                 <li><a href="${pageContext.request.contextPath}/jsp/about.jsp">About Us</a></li>
                 <li><a href="${pageContext.request.contextPath}/page/registerUser.jsp">Register User</a></li>
