@@ -101,7 +101,7 @@
         </table>
       </c:otherwise>
     </c:choose>
-    <a href="${pageContext.request.contextPath}/jsp/dashboard.jsp">Back to Dashboard</a>
+    <a href="${pageContext.request.contextPath}/dashboard">Back to Dashboard</a>
   </div>
 </body>
 </html>

@@ -156,7 +156,7 @@
     </c:choose>
     <div class="action-links">
       <a href="${pageContext.request.contextPath}/jsp/scholarship_form.jsp?action=new" class="create">Create New</a>
-      <a href="${pageContext.request.contextPath}/jsp/dashboard.jsp" class="dashboard">Dashboard</a>
+      <a href="${pageContext.request.contextPath}/dashboard" class="dashboard">Dashboard</a>
       <a href="${pageContext.request.contextPath}/logout" class="logout">Logout</a>
     </div>
   </div>

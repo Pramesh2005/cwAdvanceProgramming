@@ -26,6 +26,7 @@ public class ScholarshipServlet extends HttpServlet {
             return;
         }
 
+        
         String action = req.getParameter("action");
         ScholarshipDAO dao = new ScholarshipDAO();
 

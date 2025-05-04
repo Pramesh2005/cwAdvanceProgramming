@@ -78,4 +78,40 @@ public class ScholarshipDAO {
             p.executeUpdate();
         }
     }
+    public int countScholarships() throws SQLException {
+        String sql = "SELECT COUNT(*) AS total FROM scholarship";
+        try (Connection c = DBUtil.getConnection();
+             PreparedStatement p = c.prepareStatement(sql);
+             ResultSet r = p.executeQuery()) {
+            if (r.next()) {
+                return r.getInt("total");
+            }
+        }
+        return 0;
+    }
+
+    public List<Scholarship> searchByTitle(String keyword) throws SQLException {
+        String sql = "SELECT * FROM scholarship WHERE title LIKE ?";
+        try (Connection c = DBUtil.getConnection();
+             PreparedStatement p = c.prepareStatement(sql)) {
+            p.setString(1, "%" + keyword + "%");
+            try (ResultSet r = p.executeQuery()) {
+                List<Scholarship> L = new ArrayList<>();
+                while (r.next()) {
+                    Scholarship s = new Scholarship();
+                    s.setScholarshipId(r.getInt("scholarship_id"));
+                    s.setTitle(r.getString("title"));
+                    s.setDescription(r.getString("description"));
+                    s.setEligibilityCriteria(r.getString("eligibility_criteria"));
+                    s.setAmount(r.getDouble("amount"));
+                    s.setApplicationDeadline(r.getDate("application_deadline"));
+                    s.setCreatedBy(r.getInt("created_by"));
+                    L.add(s);
+                }
+                return L;
+            }
+        }
+    }
+
+
 }

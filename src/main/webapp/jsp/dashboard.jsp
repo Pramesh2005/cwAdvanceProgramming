@@ -104,6 +104,11 @@
       </ul>
     </div>
   </div>
+<div class="card">
+  <h3>Latest Scholarship ID</h3>
+  <p>Maximum Scholarship ID is: <strong><span><%= request.getAttribute("totalScholarships") %></span></strong></p>
+</div>
+
 
 </body>
 </html>

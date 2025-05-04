@@ -29,10 +29,14 @@ public class LoginServlet extends HttpServlet {
         try {
             User u = new UserDAO().findByEmailPwd(email, pw);
             if (u != null) {
+            	//Session implementation
                 HttpSession s = req.getSession();
                 s.setAttribute("user", u);
+                s.setAttribute("first_name", u.getFirstName());
+                s.setAttribute("last_name", u.getLastName());
+                s.setAttribute("email", u.getEmail());
                 if ("ADMIN".equalsIgnoreCase(u.getRole())) {
-                    res.sendRedirect(req.getContextPath() + "/jsp/dashboard.jsp");
+                    res.sendRedirect(req.getContextPath() + "/dashboard");
                 } else {
                     res.sendRedirect(req.getContextPath() + "/jsp/home.jsp");
                 }

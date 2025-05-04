@@ -30,6 +30,32 @@
             text-align: center;
             margin-bottom: 30px;
         }
+        .search-form {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .search-form input[type="text"] {
+            padding: 8px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .search-form button {
+            padding: 8px 16px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .search-form button:hover {
+            background: #1557b0;
+        }
+        .search-form a {
+            margin-left: 10px;
+            text-decoration: none;
+            color: #2c3e50;
+        }
         .scholarship-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -123,6 +149,14 @@
         <div class="container">
             <h2 class="section-title">Available Scholarships</h2>
             
+            <!-- Search Form -->
+            <div class="search-form">
+                <form action="${pageContext.request.contextPath}/available-scholarships" method="get">
+                    <input type="text" name="keyword" placeholder="Search by title" value="${param.keyword}" />
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+            
             <c:if test="${not empty error}">
                 <div class="debug-info">
                     Error: <c:out value="${error}" />
@@ -144,7 +178,14 @@
                     </div>
                 </c:when>
                 <c:otherwise>
-                    <p class="no-scholarships">No scholarships available</p>
+                    <c:choose>
+                        <c:when test="${not empty param.keyword}">
+                            <p class="no-scholarships">No scholarships found for "${param.keyword}"</p>
+                        </c:when>
+                        <c:otherwise>
+                            <p class="no-scholarships">No scholarships available</p>
+                        </c:otherwise>
+                    </c:choose>
                 </c:otherwise>
             </c:choose>
             <div class="action-links">

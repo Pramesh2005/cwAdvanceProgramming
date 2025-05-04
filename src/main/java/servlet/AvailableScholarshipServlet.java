@@ -28,7 +28,13 @@ public class AvailableScholarshipServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             System.out.println("Fetching scholarships...");
-            List<Scholarship> list = scholarshipDAO.listAll();
+            String keyword = req.getParameter("keyword");
+            List<Scholarship> list;
+            if (keyword != null && !keyword.trim().isEmpty()) {
+                list = scholarshipDAO.searchByTitle(keyword);
+            } else {
+                list = scholarshipDAO.listAll();
+            }
             System.out.println("Scholarships retrieved: " + list.size());
             req.setAttribute("list", list);
             req.getRequestDispatcher("/jsp/AvailableScholarship.jsp").forward(req, res);

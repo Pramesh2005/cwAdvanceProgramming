@@ -21,7 +21,7 @@ public class ApplicationServlet extends HttpServlet {
       if ("delete".equals(req.getParameter("action"))) {
         dao.delete(Integer.parseInt(req.getParameter("id")));
       }
-      List<Application> L = dao.listByUser(u.getUserId());
+      List<Application> L = dao.listByEmail(u.getEmail());
       req.setAttribute("apps", L);
       req.getRequestDispatcher("/jsp/application_list.jsp").forward(req, res);
     } catch (Exception e) { throw new ServletException(e); }
@@ -33,9 +33,9 @@ public class ApplicationServlet extends HttpServlet {
     if (u == null) { res.sendRedirect(req.getContextPath() + "/login"); return; }
     try {
       Application a = new Application();
-      a.setUserId(u.getUserId());
+      a.setId(u.getUserId());
       a.setScholarshipId(Integer.parseInt(req.getParameter("scholarshipId")));
-      a.setRemarks(req.getParameter("remarks"));
+
       new ApplicationDAO().apply(a);
       res.sendRedirect(req.getContextPath() + "/application");
     } catch (Exception e) { throw new ServletException(e); }

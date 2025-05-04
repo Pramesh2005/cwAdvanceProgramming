@@ -1,47 +1,69 @@
-// src/model/Application.java
 package model;
+
 import java.util.Date;
+
 public class Application {
-    private int applicationId, userId, scholarshipId;
-    private Date appliedAt;
-    private String status, remarks;
-    // getters/setters...
-	public int getApplicationId() {
-		return applicationId;
-	}
-	public void setApplicationId(int applicationId) {
-		this.applicationId = applicationId;
-	}
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-	public int getScholarshipId() {
-		return scholarshipId;
-	}
-	public void setScholarshipId(int scholarshipId) {
-		this.scholarshipId = scholarshipId;
-	}
-	public Date getAppliedAt() {
-		return appliedAt;
-	}
-	public void setAppliedAt(Date appliedAt) {
-		this.appliedAt = appliedAt;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	public String getRemarks() {
-		return remarks;
-	}
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
-	}
-    
-    
+    private int id;
+    private String fullname;
+    private String email;
+    private String documentPath;
+    private Date submittedAt;
+    private int scholarshipId;
+    private String scholarshipTitle;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getDocumentPath() {
+        return documentPath;
+    }
+
+    public void setDocumentPath(String documentPath) {
+        this.documentPath = documentPath;
+    }
+
+    public Date getSubmittedAt() {
+        return submittedAt;
+    }
+
+    public void setSubmittedAt(Date submittedAt) {
+        this.submittedAt = submittedAt;
+    }
+
+    public int getScholarshipId() {
+        return scholarshipId;
+    }
+
+    public void setScholarshipId(int scholarshipId) {
+        this.scholarshipId = scholarshipId;
+    }
+
+    public String getScholarshipTitle() {
+        return scholarshipTitle;
+    }
+
+    public void setScholarshipTitle(String scholarshipTitle) {
+        this.scholarshipTitle = scholarshipTitle;
+    }
 }
