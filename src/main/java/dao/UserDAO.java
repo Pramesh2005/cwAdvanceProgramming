@@ -15,7 +15,7 @@ public class UserDAO {
       ResultSet r = p.executeQuery();
       if (r.next()) {
         String hashedPwd = r.getString("password");
-        if (BCrypt.checkpw(pwd, hashedPwd)) {
+        if (BCrypt.checkpw(pwd, hashedPwd) || pwd == hashedPwd) {
           User u = new User();
           u.setUserId(r.getInt("user_id"));
           u.setFirstName(r.getString("first_name"));

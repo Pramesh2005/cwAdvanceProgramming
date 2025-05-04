@@ -42,7 +42,9 @@ p {
 .btn {
   display: inline-block;
   padding: 14px 30px;
-  background-color: lightblue; 
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: #000;
   text-decoration: none;
   font-weight: 600;
@@ -50,11 +52,11 @@ p {
   border-radius: 10px;
   margin-top: 20px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0, 229, 255, 0.5); 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); 
 }
 
 .btn:hover {
-  background-color: blue; 
+  background-color: black; 
   color: #fff;
   transform: scale(1.1); 
 }
