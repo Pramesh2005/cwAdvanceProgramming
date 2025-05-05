@@ -124,11 +124,11 @@
                 <input type="hidden" name="id" value="${application.id}">
                 <div class="form-group">
                     <label for="fullname">Full Name</label>
-                    <input type="text" id="fullname" name="fullname" value="${application.fullname}" required>
+                    <input type="text" id="fullname" name="fullname" value="${application.fullname}" readonly>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" value="${application.email}" required>
+                    <input type="email" id="email" name="email" value="${application.email}" readonly>
                 </div>
                 <div class="form-group">
                     <label for="document">Document (PDF, max 2MB)</label>

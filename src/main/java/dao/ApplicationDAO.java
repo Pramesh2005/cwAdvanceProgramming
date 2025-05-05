@@ -43,6 +43,28 @@ public class ApplicationDAO {
         }
     }
 
+    public List<Application> listAll() throws SQLException {
+        String sql = "SELECT a.id, a.fullname, a.email, a.document_path, a.submitted_at, a.scholarship_id, s.title " +
+                     "FROM applications a " +
+                     "LEFT JOIN scholarship s ON a.scholarship_id = s.scholarship_id";
+        try (Connection c = DBUtil.getConnection();
+             PreparedStatement p = c.prepareStatement(sql)) {
+            ResultSet r = p.executeQuery();
+            List<Application> applications = new ArrayList<>();
+            while (r.next()) {
+                Application a = new Application();
+                a.setId(r.getInt("id"));
+                a.setFullname(r.getString("fullname"));
+                a.setEmail(r.getString("email"));
+                a.setDocumentPath(r.getString("document_path"));
+                a.setSubmittedAt(r.getTimestamp("submitted_at"));
+                a.setScholarshipId(r.getInt("scholarship_id"));
+                a.setScholarshipTitle(r.getString("title") != null ? r.getString("title") : "Unknown Scholarship");
+                applications.add(a);
+            }
+            return applications;
+        }
+    }
     public void apply(Application a, InputStream fileInputStream, String fileName) throws SQLException, IOException {
         String documentPath = saveFile(fileInputStream, fileName);
         String sql = "INSERT INTO applications (fullname, email, document_path, scholarship_id) VALUES (?, ?, ?, ?)";
