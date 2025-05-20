@@ -78,24 +78,6 @@
    
     </div>
 
-<h2>Available Scholarships</h2>
-<c:choose>
-    <c:when test="${not empty list}">
-        <table border="1">
-            <tr><th>Title</th><th>Deadline</th><th>Action</th></tr>
-            <c:forEach var="s" items="${list}">
-                <tr>
-                    <td>${s.title}</td>
-                    <td>${s.applicationDeadline}</td>
-                    <td><a href="apply?scholarshipId=${s.scholarshipId}">Apply</a></td>
-                </tr>
-            </c:forEach>
-        </table>
-    </c:when>
-    <c:otherwise>
-        <p>No scholarships available</p>
-    </c:otherwise>
-</c:choose>
-<p><a href="application_list.jsp">My Applications</a> | <a href="${pageContext.request.contextPath}/logout">Logout</a></p>
+
 <jsp:include page="/jsp/footer.jsp" />
 </body></html>

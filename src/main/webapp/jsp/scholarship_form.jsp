@@ -3,116 +3,7 @@
 <html>
 <head>
     <title>Scholarship Form</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f4f6f8;
-            padding: 40px;
-            min-height: 100vh;
-        }
-        .container {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        h2 {
-            font-size: 28px;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        label {
-            font-weight: 500;
-            color: #2c3e50;
-            margin-bottom: 5px;
-            display: block;
-        }
-        input[type="text"],
-        input[type="number"],
-        input[type="date"],
-        textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-            color: #2c3e50;
-            background: #f9f9f9;
-            transition: border-color 0.2s;
-        }
-        input[type="text"]:focus,
-        input[type="number"]:focus,
-        input[type="date"]:focus,
-        textarea:focus {
-            border-color: #1a73e8;
-            outline: none;
-            background: white;
-        }
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-        button[type="submit"] {
-            background: #1a73e8;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background 0.2s;
-            align-self: flex-start;
-        }
-        button[type="submit"]:hover {
-            background: #1557b0;
-        }
-        .back-link {
-            margin-top: 20px;
-            text-align: center;
-        }
-        .back-link a {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: bold;
-            padding: 8px 16px;
-            border-radius: 4px;
-            background: #eceff1;
-            transition: background 0.2s, color 0.2s;
-        }
-        .back-link a:hover {
-            background: #2c3e50;
-            color: white;
-        }
-        @media (max-width: 768px) {
-            body {
-                padding: 20px;
-            }
-            .container {
-                padding: 15px;
-            }
-            h2 {
-                font-size: 24px;
-            }
-            button[type="submit"] {
-                width: 100%;
-                align-self: stretch;
-            }
-        }
-    </style>
+ <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/scholarship_form.css">
 </head>
 <body>
     <div class="container">
@@ -131,7 +22,7 @@
                     <input type="number" id="amount" step="0.01" name="amount" value="${sch.amount}" required />
                     <label for="deadline">Deadline (YYYY-MM-DD)</label>
                     <input type="date" id="deadline" name="deadline" value="${sch.applicationDeadline}" required />
-                    <button type="submit">Save</button>
+                    <button type="submit">Update</button>
                 </form>
             </c:when>
             <c:otherwise>
